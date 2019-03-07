@@ -1,16 +1,13 @@
 import * as types from './types'
 
-const products = [
-  { name: 'Sledgehammer', price: 125.76 },
-  { name: 'Axe', price: 190.51 },
-  { name: 'Bandsaw', price: 562.14 },
-  { name: 'Chisel', price: 13.9 },
-  { name: 'Hacksaw', price: 19.45 }
+const cart = [
+  { name: 'Sledgehammer', qnty: 2, price: 125.76, total: 251.52 },
+  { name: 'Axe', qnty: 1, price: 190.51, total: 190.51 }
 ]
 
-export const fetchProducts = () => async dispatch => {
+export const cartTotal = () => async dispatch => {
   dispatch({
-    type: types.CART_FETCH,
+    type: types.CART_TOTAL,
     meta: {
       async: true,
       blocking: false
@@ -18,17 +15,16 @@ export const fetchProducts = () => async dispatch => {
   })
 
   dispatch({
-    type: types.CART_FETCH_COMPLETED,
+    type: types.CART_TOTAL_COMPLETED,
     meta: {
       async: true
     },
     payload:
-      products
+      cart
   })
 }
 
 export const fetchCart = (userId) => async dispatch => {
-  const cart = products
   dispatch({
     type: types.CART_FETCH_COMPLETED,
     payload:

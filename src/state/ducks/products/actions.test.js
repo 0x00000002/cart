@@ -10,10 +10,11 @@ const mockStore = configureMockStore(middlewares)
 describe('ipfs.actions', function () {
   it('should export functions', function () {
     expect(Object.keys(actions)).toEqual([
-      'cartTotal',
-      'fetchCart',
-      'itemUpdate',
-      'itemRemove'
+      'gistAddress',
+      'ipfsFetch',
+      'ipfsSetup',
+      'ipfsUpdate',
+      'gistGetAddress'
     ])
   })
 

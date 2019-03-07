@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import List from './List'
 import Checkout from './Checkout'
 
-class Cart extends Component {
+export class Cart extends Component {
   state = {
     cart: null
   }
@@ -15,7 +15,7 @@ class Cart extends Component {
 
   render () {
     const { data } = this.props && this.props.cart
-    console.log(data)
+    // console.log(data)
     return (
       <div>
         { data && <div>Loading, please wait...</div> }
@@ -30,8 +30,8 @@ class Cart extends Component {
   }
 }
 
+export const CartItems = ({ items }) => <div className={'itemsTotal'}>{items}</div>
+
 const getUserId = () => {
   return '001'
 }
-
-export default Cart

@@ -7,12 +7,6 @@ export class Cart extends Component {
     cart: null
   }
 
-  async componentDidMount () {
-    const userId = await getUserId()
-    await this.props.fetchCart(userId)
-    this.setState({ cart: this.props.cart })
-  }
-
   render () {
     const { data } = this.props && this.props.cart
     // console.log(data)
@@ -30,8 +24,8 @@ export class Cart extends Component {
   }
 }
 
-export const CartItems = ({ items }) => <div className={'itemsTotal'}>{items}</div>
-
-const getUserId = () => {
-  return '001'
-}
+export const CartItems = ({ items }) => (
+  <a href={'./'} className={'itemsTotal'}>
+    Cart<span>{items}</span>
+  </a>
+)

@@ -80,10 +80,27 @@ button:disabled {
   background-color: #567;
 }
 
-.itemsTotal {
+.itemsTotal  {
+  color: #fff;
+  width: 70px;
+  text-align: center;
+  padding: 10px 30px;
+  text-decoration: none;
+}
+
+.itemsTotal:hover {
+  text-decoration: underline;
+}
+
+.itemsTotal > span {
   background-color: #fff;
   border-radius: 100%;
-  width: 15px;
-  padding: 3px;
+  width: 25px;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 1px 5px;
   text-align: center;
+  margin-left: 10px;
 }
+

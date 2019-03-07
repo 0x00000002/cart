@@ -2,8 +2,8 @@
 
 import * as index from './index'
 
-describe('user.index', function () {
+describe('cart/index.js', function () {
   it('should export functions', function () {
-    expect(Object.keys(index)).toEqual(['default', 'ipfsOperations'])
+    expect(Object.keys(index)).toEqual(['default', 'cartOperations'])
   })
 })

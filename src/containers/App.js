@@ -2,12 +2,10 @@ import { connect } from 'react-redux'
 import Cart from '../components/Cart'
 import { cartOperations } from '../state/ducks/cart'
 
-export const mapStateToProps = state => ({
-  cart: state.cart
-})
+export const mapStateToProps = ({ cart }) => ({ cart })
 
 export const mapDispatchToProps = {
-  getCart: cartOperations.getCart,
+  fetchCart: cartOperations.fetchCart,
   itemUpdate: cartOperations.itemUpdate,
   itemRemove: cartOperations.itemRemove
 }

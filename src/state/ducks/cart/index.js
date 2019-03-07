@@ -1,7 +1,7 @@
 import reducer from './reducers'
 
-import * as ipfsOperations from './operations'
+import * as cartOperations from './operations'
 
-export { ipfsOperations }
+export { cartOperations }
 
 export default reducer

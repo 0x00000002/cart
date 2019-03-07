@@ -1,3 +1,3 @@
-import { ipfsFetch, ipfsSetup, ipfsUpdate, gistGetAddress } from './actions'
+import { fetchCart, itemRemove, itemUpdate } from './actions'
 
-export { ipfsFetch, ipfsSetup, ipfsUpdate, gistGetAddress }
+export { fetchCart, itemRemove, itemUpdate }

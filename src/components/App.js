@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import List from './List'
+import Main from './Main'
 import Header from './Header'
+import { CartContext } from './CartContext'
 
 export default class App extends Component {
   async componentDidMount () {
@@ -10,17 +11,20 @@ export default class App extends Component {
   }
 
   render () {
-    const { cart: { data: cartData }, products: { data: productsData } } = this.props
+    const { cart, products } = this.props
+    const hasList = !!products.data.length
+    const hasCart = !!cart.data.length
+
     return (
-      <div>
-        { (!cartData || !productsData) && <div>Loading, please wait...</div> }
-        { cartData && productsData &&
+      <CartContext.Provider value={cart.data} >
+        { (!hasList || !hasCart) && <div>Loading, please wait...</div> }
+        { hasList && hasCart &&
           <div>
-            <List data={productsData} />
-            <Header data={{ cartTotal: cartData.length }} />
+            <Header data={{ cartTotal: cart.data.length }} />
+            <Main data={products.data} />
           </div>
         }
-      </div>
+      </CartContext.Provider>
     )
   }
 }
@@ -28,4 +32,3 @@ export default class App extends Component {
 const getUserId = () => {
   return '001'
 }
-

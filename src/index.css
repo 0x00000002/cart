@@ -29,27 +29,39 @@ section {
 }
 
 .itemsTotal  {
+  background-color: #234;
   color: #fff;
-  width: 70px;
-  text-align: center;
-  padding: 10px 30px;
-  text-decoration: none;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  padding: 7px 5px;
+  opacity: 1;
 }
 
 .itemsTotal:hover {
-  text-decoration: underline;
+  background-color: #fff;
+  color: #234;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.9;
+  transition-duration: 0.2s;
 }
 
-.itemsTotal > span {
-  background-color: #fff;
+.itemsTotal:hover > span:last-child{
+  transition-duration: 0.2s;
+  color: #234;
+}
+
+.itemsTotal > span:last-child {
   border-radius: 100%;
-  width: 25px;
-  color: #000;
+  color: #fff;
   font-size: 0.9rem;
   font-weight: bold;
-  padding: 1px 5px;
   text-align: center;
-  margin-left: 10px;
+  margin-left: 3px;
 }
 
 header {
@@ -66,9 +78,7 @@ header div:first-child {
 }
 
 header div:last-child {
-  text-align: right;
-  width: 100px;
-  padding: 0 30px;
+  margin-right: 50px;
 }
 
 
@@ -81,16 +91,45 @@ header div:last-child {
 .list > div {
   display: flex;
   flex-direction: row;
-  padding-top: 0.5rem;
+  padding-top: 0.6rem;
+  align-items: center;
+}
+
+.list > div > span {
+  text-align: right;
+  width: 100px;
+  padding: 0 10px;
 }
 
 .list > div > span:first-child {
+  text-align: left;
   width: 100%;
 }
 
 .list > div > span:last-child {
   text-align: right;
-  width: 100px;
   padding: 0 10px;
+  width: 20px;
+}
+
+button {
+  /*background-color: forestgreen;*/
+  color: darkgreen;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  font-weight: bold;
+  width: 20px;
+  padding: 3px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: 0px
+}
+
+button:hover {
+  color: forestgreen;
+  cursor: pointer;
 }
 

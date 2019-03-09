@@ -1,3 +1,2 @@
-import { fetchCart, cartTotal, itemRemove, itemUpdate } from './actions'
-
-export { fetchCart, cartTotal, itemRemove, itemUpdate }
+import { fetchCart, cartTotal, addItem, itemUpdate } from './actions'
+export { fetchCart, cartTotal, addItem, itemUpdate }

@@ -10,11 +10,10 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = {
   fetchList: productsOperations.fetchProducts,
-
   fetchCart: cartOperations.fetchCart,
   cartTotal: cartOperations.cartTotal,
   itemUpdate: cartOperations.itemUpdate,
-  itemRemove: cartOperations.itemRemove
+  addItem: cartOperations.addItem
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

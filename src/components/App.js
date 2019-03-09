@@ -13,12 +13,18 @@ export default class App extends Component {
   render () {
     const { cart, products } = this.props
     const hasList = !!products.data.length
-    const hasCart = !!cart.data.length
+    const state = cart.data
+    const dispatch = {
+      cartTotal: this.props.cartTotal,
+      fetchCart: this.props.fetchCart,
+      addItem: this.props.addItem,
+      itemUpdate: this.props.itemUpdate
+    }
 
     return (
-      <CartContext.Provider value={cart.data} >
-        { (!hasList || !hasCart) && <div>Loading, please wait...</div> }
-        { hasList && hasCart &&
+      <CartContext.Provider value={{ state, dispatch }} >
+        { !hasList && <div>Loading, please wait...</div> }
+        { hasList &&
           <div>
             <Header data={{ cartTotal: cart.data.length }} />
             <Main data={products.data} />

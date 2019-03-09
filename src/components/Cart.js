@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import List from './List'
 import Checkout from './Checkout'
+import ShoppingCart from '@material-ui/icons/ShoppingCart'
 
 export class Cart extends Component {
   state = {
@@ -8,15 +9,15 @@ export class Cart extends Component {
   }
 
   render () {
-    const { data } = this.props && this.props.cart
-    // console.log(data)
+    const { state, dispatch } = this.props && this.props.cart
+
     return (
       <div>
-        { data && <div>Loading, please wait...</div> }
-        { data && data.length &&
+        { !state && <div>Loading, please wait...</div> }
+        { state && state.length &&
           <div>
-            <List data={data} />
-            <Checkout cart={data} />
+            <List data={state} />
+            <Checkout cart={state} />
           </div>
         }
       </div>
@@ -25,7 +26,8 @@ export class Cart extends Component {
 }
 
 export const CartItems = ({ items }) => (
-  <a href={'./'} className={'itemsTotal'}>
-    Cart<span>{items}</span>
-  </a>
+  <div className={'itemsTotal'}>
+    <span><ShoppingCart style={{ fontSize: 16 }} /></span>
+    <span>{items}</span>
+  </div>
 )

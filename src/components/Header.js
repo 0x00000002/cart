@@ -3,11 +3,11 @@ import { CartItems } from './Cart'
 import settings from '../settings'
 
 const Header = (props) => {
-  const { cartTotal } = props.data
+  const { items } = props.data
   return (
     <header>
       <div><h1>{settings.siteName}</h1></div>
-      <div><CartItems items={cartTotal} /></div>
+      <div><CartItems items={items} /></div>
     </header>
   )
 }

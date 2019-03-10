@@ -1,26 +1,16 @@
 import * as types from './types'
 
-const cart = []
+const cart = { data: [], items: 0 }
 
 export const cartTotal = () => async dispatch => {
   dispatch({
-    type: types.CART_TOTAL,
-    meta: {
-      async: true,
-      blocking: false
-    }
-  })
-
-  dispatch({
     type: types.CART_TOTAL_COMPLETED,
-    meta: {
-      async: true
-    },
     payload:
       cart
   })
 }
 
+// should be fetched from DB by user's cookie
 export const fetchCart = (userId) => async dispatch => {
   dispatch({
     type: types.CART_FETCH,
@@ -32,8 +22,7 @@ export const fetchCart = (userId) => async dispatch => {
 
   dispatch({
     type: types.CART_FETCH_COMPLETED,
-    payload:
-      cart
+    payload: cart
   })
 }
 

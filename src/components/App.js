@@ -7,7 +7,7 @@ export default class App extends Component {
   async componentDidMount () {
     const userId = await getUserId()
     await this.props.fetchList()
-    await this.props.cartTotal(userId)
+    await this.props.fetchCart(userId)
   }
 
   render () {
@@ -26,7 +26,7 @@ export default class App extends Component {
         { !hasList && <div>Loading, please wait...</div> }
         { hasList &&
           <div>
-            <Header data={{ cartTotal: cart.data.length }} />
+            <Header data={{ items: cart.data.items }} />
             <Main data={products.data} />
           </div>
         }

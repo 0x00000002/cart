@@ -1,6 +1,6 @@
 import * as types from './types'
 
-const emptyCart = { data: [], items: null }
+const emptyCart = { data: [], items: 0, sum: 0 }
 const cart = emptyCart
 
 export const clearCart = () => async dispatch => {

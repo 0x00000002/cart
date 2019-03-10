@@ -45,7 +45,23 @@ const List = ({ data }) => {
           <span>{item.total}</span>
         </div>
       )}
+      <br /><hr />
+      <Total />
     </section>
+  )
+}
+
+const Total = () => {
+  const { state: { items = 0, sum = 0 } } = React.useContext(CartContext)
+
+  return (
+    <div>
+      <span><h3>Total:</h3></span>
+      <span>&nbsp;</span>
+      <span><h3>{items}</h3></span>
+      <span>&nbsp;</span>
+      <span><h3>{sum}</h3></span>
+    </div>
   )
 }
 
@@ -53,7 +69,7 @@ const EmptyCart = (handler) => (
   <div>
     <h2>Cart is empty</h2>
     <p>Add some products to your cart! </p>
-    <div className={'handlers'}>
+    <div className={'backOnly'}>
       <BackToCatalog />
     </div>
   </div>

@@ -13,10 +13,10 @@ const format = R.compose(addId, formatPrice, select)
 
 const Main = ({ data }) => {
   return (
-    <section>
+    <div>
       <List data={format(data)} />
       { /* some other components */ }
-    </section>
+    </div>
   )
 }
 

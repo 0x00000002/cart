@@ -3,7 +3,7 @@ import AddShoppingCart from '@material-ui/icons/AddShoppingCart'
 import { CartContext } from './CartContext'
 
 const List = (props) => {
-  const { dispatch } = React.useContext(CartContext)
+  const { handlers } = React.useContext(CartContext)
 
   return (
     <div className={'list'}>
@@ -13,7 +13,7 @@ const List = (props) => {
           <span>{item.name}</span>
           <span>{item.price}</span>
           <span>
-            <button onClick={(e) => dispatch.addItem(item)}>
+            <button className={'addToCart'} onClick={(e) => handlers.addItem(item)}>
               <AddShoppingCart style={{ fontSize: 16 }} />
             </button>
           </span>

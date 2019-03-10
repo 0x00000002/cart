@@ -1,2 +1,15 @@
-import { fetchCart, cartTotal, addItem, itemUpdate } from './actions'
-export { fetchCart, cartTotal, addItem, itemUpdate }
+import {
+  fetchCart,
+  clearCart,
+  cartTotal,
+  addItem,
+  removeItem
+} from './actions'
+
+export {
+  fetchCart,
+  clearCart,
+  cartTotal,
+  addItem,
+  removeItem
+}

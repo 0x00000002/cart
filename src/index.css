@@ -23,8 +23,11 @@ h2 {
   font-weight: 100;
 }
 
+button {
+  border: 0
+}
 
-section {
+main {
   margin: 20px 30px;
 }
 
@@ -112,7 +115,46 @@ header div:last-child {
   width: 20px;
 }
 
-button {
+.handlers {
+  margin: 50px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-self: stretch;
+  justify-content: stretch;
+}
+
+.handlers > div:first-child {
+  width: 50%;
+}
+
+.handlers > div:first-child div {
+  margin-right: 50%;
+}
+
+.handlers > div:last-child {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.handlers > div:last-child > button {
+  justify-items: flex-end;
+}
+
+.handler {
+  border-radius: 0;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.handler:hover {
+  transition-duration: 0.2s;
+}
+
+.addToCart {
   /*background-color: forestgreen;*/
   color: darkgreen;
   text-transform: uppercase;
@@ -128,8 +170,60 @@ button {
   border: 0px
 }
 
-button:hover {
+.addToCart:hover {
   color: forestgreen;
   cursor: pointer;
 }
 
+.backToCatalog {
+  background-color: #fff;
+  border: 0;
+  color: #999;
+  width: 200px;
+  text-decoration: underline;
+}
+
+.backToCatalog:hover {
+  color: #234;
+}
+
+.clearAll {
+  background-color: indianred;
+  color: #fff;
+  width: 200px;
+}
+
+.clearAll:hover {
+  background-color: orangered;
+}
+
+.checkout {
+  background-color: forestgreen;
+  color: #fff;
+  width: 200px;
+}
+
+.checkout:hover {
+  background-color: green;
+}
+
+.cartList {
+  width: 100%;
+}
+
+.cartList div {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+
+.cartList span {
+  width: 170px;
+  text-align: right;
+  align-items: center;
+}
+
+.cartList span:first-child {
+  text-align: left;
+  width: 100%;
+}

@@ -12,8 +12,9 @@ export const mapDispatchToProps = {
   fetchList: productsOperations.fetchProducts,
   fetchCart: cartOperations.fetchCart,
   cartTotal: cartOperations.cartTotal,
-  itemUpdate: cartOperations.itemUpdate,
-  addItem: cartOperations.addItem
+  removeItem: cartOperations.removeItem,
+  addItem: cartOperations.addItem,
+  clearCart: cartOperations.clearCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

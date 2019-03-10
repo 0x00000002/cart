@@ -6,9 +6,7 @@ import immutableStateInvariantMiddleware from 'redux-immutable-state-invariant'
 
 export default function configureStore (initialState) {
   const rootReducer = combineReducers(reducers)
-
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
-    compose
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
   return createStore(
     rootReducer,

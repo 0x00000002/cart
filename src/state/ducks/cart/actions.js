@@ -1,9 +1,11 @@
 import * as types from './types'
+import { saveState, loadState } from '../../../state/localStorage'
 
 const emptyCart = { data: [], items: 0, sum: 0 }
-const cart = emptyCart
+const cart = loadState().cart.data
 
 export const clearCart = () => async dispatch => {
+  saveState(emptyCart)
   dispatch({
     type: types.CLEAR_CART_COMPLETED,
     payload: emptyCart
@@ -26,8 +28,6 @@ export const fetchCart = (userId) => async dispatch => {
       blocking: true
     }
   })
-
-  // previous session state should be fetched from DB by user's ID
 
   dispatch({
     type: types.CART_FETCH_COMPLETED,

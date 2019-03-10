@@ -7,8 +7,12 @@ import configureStore from './state/store'
 import errors from './helpers/errorHandling'
 import ErrorBoundary from './helpers/errorBoundary'
 import * as serviceWorker from './helpers/serviceWorker'
+import { saveState, loadState } from './state/localStorage'
 
-const reduxStore = configureStore()
+const persistedState = loadState()
+const reduxStore = configureStore(persistedState)
+
+reduxStore.subscribe(() => saveState(reduxStore.getState()))
 
 ReactDOM.render(
   <ErrorBoundary reason={errors.others}>

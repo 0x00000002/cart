@@ -6,25 +6,28 @@ import App, { mapStateToProps, mapDispatchToProps } from './App'
 jest.mock('react-redux', () => ({
   connect: jest
     .fn()
-    .mockReturnValue(jest.fn().mockReturnValue({ component: 'fake-component' }))
+    .mockReturnValue(jest.fn().mockReturnValue({
+      component: 'fake-component',
+    }))
 }))
 
-describe('containers.Dashboard', function () {
+describe('containers/App', function () {
   describe('mapStateToProps', function () {
     it('should return a remapped state', function () {
-      expect(
-        mapStateToProps({ ipfs: 'fake-ipfs' })
-      ).toEqual({ ipfs: 'fake-ipfs' })
+      expect(mapStateToProps({ cart: 'cart test', products: 'products test' })
+      ).toEqual({ cart: 'cart test', products: 'products test' })
     })
   })
 
   describe('mapDispatchToProps', function () {
     it('should return a remapped dispatches', function () {
       expect(Object.keys(mapDispatchToProps)).toEqual([
-        'gistGetAddress',
-        'ipfsFetch',
-        'ipfsUpdate',
-        'ipfsSetup'
+        'fetchList',
+        'fetchCart',
+        'cartTotal',
+        'removeItem',
+        'addItem',
+        'clearCart'
       ])
     })
   })

@@ -3,7 +3,7 @@
 import * as index from './index'
 
 describe('ducks.index', function () {
-  it('should export functions', function () {
-    expect(Object.keys(index)).toEqual(['ipfs'])
+  it('should export states', function () {
+    expect(Object.keys(index)).toEqual(['cart', 'products'])
   })
 })

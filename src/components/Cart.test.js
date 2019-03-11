@@ -1,18 +1,13 @@
 import React from 'react'
-import Cart from './Code'
-import CodeMirror from 'react-codemirror'
+import Cart, { List } from './Cart'
 import { shallow } from 'enzyme'
-
-const testProps = {
-  code: 'test code',
-  handler: jest.fn()
-}
+import props from '../helpers/test'
 
 describe('components/Code', function () {
-  it('should call handler', async function () {
-    const wrapper = shallow(<Cart {...testProps} />)
-    expect(wrapper.find(CodeMirror).exists()).toEqual(true)
-    wrapper.find(CodeMirror).simulate('change')
-    expect(testProps.handler).toBeCalled()
+  it('should .... /*?*/ /*?*//*?*/', async function () {
+    const wrapper = shallow(<Cart {...props.correct.cart.data} />)
+    expect(wrapper.findWhere(<List />).exists()).toEqual(true)
+    wrapper.find().simulate('change')
+    expect(props.correct.handlers.fetchCart).toBeCalled()
   })
 })

@@ -22,7 +22,7 @@ export const cartTotal = () => async dispatch => {
 
 export const fetchCart = () => dispatch => {
   dispatch({
-    type: types.CART_FETCH_COMPLETED,
+    type: types.CART_FETCH_COMPLETED
   })
 }
 

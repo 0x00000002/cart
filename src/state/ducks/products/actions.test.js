@@ -3,32 +3,36 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import * as actions from './actions'
 import * as types from './types'
-
+import props from './../../../helpers/test'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('ipfs.actions', function () {
+describe('cart.actions', function () {
   it('should export functions', function () {
     expect(Object.keys(actions)).toEqual([
-      'gistAddress',
-      'ipfsFetch',
-      'ipfsSetup',
-      'ipfsUpdate',
-      'gistGetAddress'
+      'fetchProducts'
     ])
   })
 
-  describe('ipfsFetch', function () {
-    it('should return an IPFS_FETCH action', function () {
-      expect(actions.ipfsFetch('fake-address')).toEqual({
-        type: types.IPFS_FETCH,
+  describe('fetchProducts', function () {
+    it.only('should return an PRODUCTS_FETCH action', function () {
+      expect(actions.fetchProducts()).toEqual({
+        type: types.PRODUCTS_FETCH,
         meta: {
           async: true,
-          blocking: true,
-          path: '/api/v0/cat?arg=fake-address',
-          method: 'GET'
+          blocking: false
         }
       })
+    })
+
+      expect(props.correct.handlers.fetchList()).toBeCalled()
+      // expect(actions.fetchProducts().toEqual({
+      //   type: types.PRODUCTS_FETCH,
+      //   meta: {
+      //     async: true,
+      //     blocking: false
+      //   }
+      // })
     })
     it('should return IPFS_FETCH_COMPLETE action on empty address', function () {
       expect(actions.ipfsFetch('')).toEqual({

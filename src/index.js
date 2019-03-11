@@ -7,9 +7,12 @@ import configureStore from './state/store'
 import errors from './helpers/errorHandling'
 import ErrorBoundary from './helpers/errorBoundary'
 import * as serviceWorker from './helpers/serviceWorker'
-import { saveState, loadState } from './state/localStorage'
+import { saveState, loadState, clearState } from './state/localStorage'
+
+// clearState() // Debug purpose only
 
 const persistedState = loadState()
+console.log('Started with state: ', persistedState)
 const reduxStore = configureStore(persistedState)
 
 reduxStore.subscribe(() => saveState(reduxStore.getState()))

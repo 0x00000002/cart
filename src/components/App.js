@@ -16,9 +16,8 @@ export default class App extends Component {
   }
 
   render () {
-    const { cart, products } = this.props
-    const hasList = !!products.data.length
-    const state = cart.data
+    const { cart: { data: cartData }, products: { data: productData } } = this.props
+    const productList = cartData && productData.items
     const viewCart = () => this.setState({ viewCart: !this.state.viewCart })
     const handlers = {
       cartTotal: this.props.cartTotal,
@@ -30,12 +29,12 @@ export default class App extends Component {
     }
 
     return (
-      <CartContext.Provider value={{ state, handlers }} >
-        <Header data={{ items: cart.data.items }} />
+      <CartContext.Provider value={{ cartData, handlers }} >
+        <Header data={{ items: cartData.qnty }} />
         <main>
-          { !hasList && <h2>Loading, please wait...</h2> }
-          { hasList && !this.state.viewCart && <Main data={products.data} /> }
-          { hasList && this.state.viewCart && <Cart cart={state} /> }
+          { !productList.length && <h2>Loading, please wait...</h2> }
+          { productList.length && !this.state.viewCart && <Main items={productData.items} /> }
+          { productList.length && this.state.viewCart && <Cart cart={cartData} /> }
         </main>
       </CartContext.Provider>
     )

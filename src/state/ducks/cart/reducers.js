@@ -22,32 +22,32 @@ const replace = (index, newItem) => R.set(indexLens(index), newItem)
 const remove = index => R.remove(index, 1)
 const decreaseSum = (item, total) => addPrice(-item.price * item.qnty)(total)
 
-export const cartReducer = createReducer({ data: [], items: 0 }, {
+export const cartReducer = createReducer({}, {
   [types.CLEAR_CART_COMPLETED]: (state, action) => action.payload,
-  [types.CART_TOTAL_COMPLETED]: (state, action) => action.payload,
-  [types.CART_FETCH_COMPLETED]: (state, action) => action.payload,
+  [types.CART_TOTAL_COMPLETED]: (state, action) => state,
+  [types.CART_FETCH_COMPLETED]: (state, action) => state,
   [types.ADD_ITEM_COMPLETED]: (state, action) => addItem(state, action.payload),
   [types.REMOVE_ITEM_COMPLETED]: (state, action) => removeItem(state, action.payload)
 })
 
-export default combineReducers({ data: cartReducer })
-
 const addItem = (state, item) => {
-  const { data: cart, items: qnty, sum: total } = state
+  const { items: cart, qnty: quantity, sum: total } = state
   const changes = increment(item)(cart)
   const newItem = changes[0] || { ...item, qnty: 1, total: item.price }
   const index = getIndex(item.id)(cart)
-  const data = index === -1 ? [...cart, newItem] : replace(index, newItem)(cart)
-  const items = inc(qnty)
+  const items = index === -1 ? [...cart, newItem] : replace(index, newItem)(cart)
+  const qnty = inc(quantity)
   const sum = addPrice(total)(item.price)
-  return { data, items, sum }
+  return { items, qnty, sum }
 }
 
 const removeItem = (state, item) => {
-  const { data: cart, items: qnty, sum: total } = state
+  const { items: cart, qnty: quantity, sum: total } = state
   const index = getIndex(item.id)(cart)
-  const items = qnty - cart[index].qnty
-  const data = index === -1 ? [...cart] : remove(index)(cart)
+  const qnty = quantity - cart[index].qnty
+  const items = index === -1 ? [...cart] : remove(index)(cart)
   const sum = decreaseSum(item, total)
-  return { data, items, sum }
+  return { items, qnty, sum }
 }
+
+export default combineReducers({ data: cartReducer })

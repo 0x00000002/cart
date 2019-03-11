@@ -4,7 +4,7 @@ import Buttons, { BackToCatalog } from './Buttons'
 import { CartContext } from './CartContext'
 
 const Cart = ({ cart }) => {
-  const empty = !cart.items
+  const empty = !cart.qnty
   const { handlers } = React.useContext(CartContext)
 
   return (
@@ -14,7 +14,7 @@ const Cart = ({ cart }) => {
       { !empty &&
         <div>
           <h2>Cart</h2>
-          <List data={cart.data} />
+          <List />
           <Buttons />
         </div>
       }
@@ -29,12 +29,12 @@ export const CartItems = ({ items }) => (
   </div>
 )
 
-const List = ({ data }) => {
-  const { handlers } = React.useContext(CartContext)
+const List = () => {
+  const { cartData: { items }, handlers } = React.useContext(CartContext)
 
   return (
     <section className={'cartList'}>
-      { data.map(item =>
+      { items.map(item =>
         <div key={item.id}>
           <span>{item.name}</span>
           <span>{item.price}</span>
@@ -52,13 +52,13 @@ const List = ({ data }) => {
 }
 
 const Total = () => {
-  const { state: { items = 0, sum = 0 } } = React.useContext(CartContext)
+  const { cartData: { qnty, sum } } = React.useContext(CartContext)
 
   return (
     <div>
       <span><h3>Total:</h3></span>
       <span>&nbsp;</span>
-      <span><h3>{items}</h3></span>
+      <span><h3>{qnty}</h3></span>
       <span>&nbsp;</span>
       <span><h3>{sum}</h3></span>
     </div>

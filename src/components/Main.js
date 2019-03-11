@@ -11,10 +11,10 @@ const mapIndexed = R.addIndex(R.map)
 const addId = mapIndexed((val, id) => ({ id, ...val })) // we should have product ID, eh? :-)
 const format = R.compose(addId, formatPrice, select)
 
-const Main = ({ data }) => {
+const Main = ({ items }) => {
   return (
     <div>
-      <List data={format(data)} />
+      <List items={format(items)} />
       { /* some other components */ }
     </div>
   )

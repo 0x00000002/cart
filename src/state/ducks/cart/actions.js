@@ -1,11 +1,13 @@
 import * as types from './types'
-import { saveState, loadState } from '../../../state/localStorage'
 
-const emptyCart = { data: [], items: 0, sum: 0 }
-const cart = loadState().cart.data
+const emptyCart = {
+  items: [],
+  qnty: 0,
+  sum: 0
+}
 
 export const clearCart = () => async dispatch => {
-  saveState(emptyCart)
+//  saveState(emptyState)
   dispatch({
     type: types.CLEAR_CART_COMPLETED,
     payload: emptyCart
@@ -15,27 +17,12 @@ export const clearCart = () => async dispatch => {
 export const cartTotal = () => async dispatch => {
   dispatch({
     type: types.CART_TOTAL_COMPLETED,
-    payload:
-      cart
   })
 }
 
-export const fetchCart = (userId) => async dispatch => {
-  dispatch({
-    type: types.CART_FETCH,
-    meta: {
-      async: true,
-      blocking: true
-    }
-  })
-
+export const fetchCart = () => dispatch => {
   dispatch({
     type: types.CART_FETCH_COMPLETED,
-    meta: {
-      async: true,
-      blocking: false
-    },
-    payload: cart
   })
 }
 

@@ -2,7 +2,7 @@
 
 import { combineReducers } from 'redux'
 import { createReducer } from '../../utils'
-import reducer, { ipfsReducer } from './reducers'
+import reducer, { productsReducer } from './reducers'
 
 jest.mock('redux', () => ({
   combineReducers: jest
@@ -16,40 +16,16 @@ jest.mock('../../utils', () => ({
 describe('ipfs.reducers', function () {
   describe('ipfsReducer', function () {
     it('should call createReducer with correct args', function () {
-      expect(ipfsReducer).toEqual('fake-reducer')
+      expect(productsReducer).toEqual('fake-reducer')
       expect(createReducer.mock.calls[0][0]).toEqual({})
       expect(Object.keys(createReducer.mock.calls[0][1])).toEqual([
-        'IPFS_FETCH_COMPLETED',
-        'IPFS_SETUP_COMPLETED',
-        'IPFS_UPDATE_COMPLETED',
-        'IPFS_GETADDRESS_COMPLETED'
+        'PRODUCTS_FETCH_COMPLETED'
       ])
     })
 
     it('should support IPFS_FETCH_COMPLETED', function () {
       expect(
-        createReducer.mock.calls[0][1]['IPFS_FETCH_COMPLETED']({}, {
-          payload: 'fake-payload'
-        })
-      ).toEqual({ address: 'new', code: 'fake-payload' })
-    })
-    it('should support IPFS_SETUP_COMPLETED', function () {
-      expect(
-        createReducer.mock.calls[0][1]['IPFS_SETUP_COMPLETED']({}, {
-          payload: 'fake-payload'
-        })
-      ).toEqual('fake-payload')
-    })
-    it('should support IPFS_UPDATE_COMPLETED', function () {
-      expect(
-        createReducer.mock.calls[0][1]['IPFS_UPDATE_COMPLETED']({}, {
-          payload: 'fake-payload'
-        })
-      ).toEqual('fake-payload')
-    })
-    it('should support IPFS_GETADDRESS_COMPLETED', function () {
-      expect(
-        createReducer.mock.calls[0][1]['IPFS_GETADDRESS_COMPLETED']({}, {
+        createReducer.mock.calls[0][1]['PRODUCTS_FETCH_COMPLETED']({}, {
           payload: 'fake-payload'
         })
       ).toEqual('fake-payload')

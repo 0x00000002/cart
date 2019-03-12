@@ -2,7 +2,8 @@
 
 import { combineReducers } from 'redux'
 import { createReducer } from '../../utils'
-import reducer, { ipfsReducer } from './reducers'
+import reducer, { cartReducer } from './reducers'
+import fake from '../../../helpers/testing'
 
 jest.mock('redux', () => ({
   combineReducers: jest
@@ -16,43 +17,59 @@ jest.mock('../../utils', () => ({
 describe('ipfs.reducers', function () {
   describe('ipfsReducer', function () {
     it('should call createReducer with correct args', function () {
-      expect(ipfsReducer).toEqual('fake-reducer')
+      expect(cartReducer).toEqual('fake-reducer')
       expect(createReducer.mock.calls[0][0]).toEqual({})
       expect(Object.keys(createReducer.mock.calls[0][1])).toEqual([
-        'IPFS_FETCH_COMPLETED',
-        'IPFS_SETUP_COMPLETED',
-        'IPFS_UPDATE_COMPLETED',
-        'IPFS_GETADDRESS_COMPLETED'
+        'CLEAR_CART_COMPLETED',
+        'CART_TOTAL_COMPLETED',
+        'CART_FETCH_COMPLETED',
+        'ADD_ITEM_COMPLETED',
+        'REMOVE_ITEM_COMPLETED'
       ])
     })
 
-    it('should support IPFS_FETCH_COMPLETED', function () {
+    it('should support CLEAR_CART_COMPLETED', function () {
       expect(
-        createReducer.mock.calls[0][1]['IPFS_FETCH_COMPLETED']({}, {
-          payload: 'fake-payload'
-        })
-      ).toEqual({ address: 'new', code: 'fake-payload' })
-    })
-    it('should support IPFS_SETUP_COMPLETED', function () {
-      expect(
-        createReducer.mock.calls[0][1]['IPFS_SETUP_COMPLETED']({}, {
-          payload: 'fake-payload'
+        createReducer.mock.calls[0][1]['CLEAR_CART_COMPLETED']({}, {
+          payload: fake.payload
         })
       ).toEqual('fake-payload')
     })
-    it('should support IPFS_UPDATE_COMPLETED', function () {
+
+    it('should support CART_TOTAL_COMPLETED', function () {
       expect(
-        createReducer.mock.calls[0][1]['IPFS_UPDATE_COMPLETED']({}, {
-          payload: 'fake-payload'
-        })
-      ).toEqual('fake-payload')
+        createReducer.mock.calls[0][1]['CART_TOTAL_COMPLETED'](
+          { state: fake.state },
+          { payload: fake.payload }
+        )
+      ).toEqual({ state: fake.state })
     })
-    it('should support IPFS_GETADDRESS_COMPLETED', function () {
+
+    it('should support CART_FETCH_COMPLETED', function () {
       expect(
-        createReducer.mock.calls[0][1]['IPFS_GETADDRESS_COMPLETED']({}, {
-          payload: 'fake-payload'
-        })
-      ).toEqual('fake-payload')
+        createReducer.mock.calls[0][1]['CART_FETCH_COMPLETED'](
+          { state: fake.state },
+          { payload: fake.payload }
+        )
+      ).toEqual({ state: fake.state })
+    })
+
+    it('should support ADD_ITEM_COMPLETED', function () {
+      const expectedCart = {
+        items: [
+          { id: 0, name: 'Coca Cola', price: "3.00", qnty: 2, total: "6.00" },
+          { id: 1, name: 'Pepsi Cola', price: "2.50", qnty: 2, total: "5.00" }
+        ],
+        qnty: 4,
+        sum: '11.00'
+      }
+
+      expect(
+        createReducer.mock.calls[0][1]['ADD_ITEM_COMPLETED'](
+          { ...fake.props.correct.cart.data },
+          { payload: fake.item }
+        )
+      ).toEqual(expectedCart)
     })
   })
 

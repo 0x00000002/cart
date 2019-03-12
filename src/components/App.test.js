@@ -34,7 +34,7 @@ const props = {
 let wrapper
 
 describe('components/App', function () {
-  it('should display Loading... on empty props', async function () {
+  it('should display Loading... on empty fake', async function () {
     wrapper = mount(<App {...props.wrong} />)
     expect(wrapper.text()).toEqual('Loading gist, please wait ...')
   })

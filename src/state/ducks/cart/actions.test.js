@@ -1,89 +1,58 @@
 'use strict'
-import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+import fake from '../../../helpers/testing'
 import * as actions from './actions'
 import * as types from './types'
 
-const middlewares = [thunk]
-const mockStore = configureMockStore(middlewares)
+const emptyCart = {
+  items: [],
+  qnty: 0,
+  sum: 0
+}
 
-describe('ipfs.actions', function () {
+describe('cart actions', function () {
   it('should export functions', function () {
     expect(Object.keys(actions)).toEqual([
+      'clearCart',
       'cartTotal',
       'fetchCart',
-      'itemUpdate',
-      'itemRemove'
+      'addItem',
+      'removeItem'
     ])
   })
 
-  describe('ipfsFetch', function () {
-    it('should return an IPFS_FETCH action', function () {
-      expect(actions.ipfsFetch('fake-address')).toEqual({
-        type: types.IPFS_FETCH,
-        meta: {
-          async: true,
-          blocking: true,
-          path: '/api/v0/cat?arg=fake-address',
-          method: 'GET'
-        }
+  describe('clearCart', function () {
+    it('should return an CLEAR_CART_COMPLETE action', function () {
+      expect(actions.clearCart()).toEqual({
+        type: types.CLEAR_CART_COMPLETED,
+        payload: emptyCart
       })
     })
-    it('should return IPFS_FETCH_COMPLETE action on empty address', function () {
-      expect(actions.ipfsFetch('')).toEqual({
-        type: types.IPFS_FETCH_COMPLETED
+
+    it('should return CART_FETCH_COMPLETED action on empty address', function () {
+      expect(actions.fetchCart('')).toEqual({
+        type: types.CART_FETCH_COMPLETED
       })
     })
   })
 
-  describe('ipfsSetup', function () {
-    it('should return an IPFS_SETUP action', function () {
-      expect(actions.ipfsSetup()).toEqual({
-        type: types.IPFS_SETUP,
-        meta: {
-          async: true,
-          blocking: true,
-          path: '/api/v0/version',
-          method: 'GET'
-        }
-      })
+  it('should return an CART_TOTAL_COMPLETED action', function () {
+    expect(actions.cartTotal()).toEqual({
+      type: types.CART_TOTAL_COMPLETED
     })
   })
 
-  describe('ipfsUpdate', function () {
-    it('should return an IPFS_UPDATE action', function () {
-      const store = mockStore({ code: 'fake-code', address: 'fake-address' })
-      const expectedAction = [{
-        type: types.IPFS_UPDATE_COMPLETED,
-        payload: {
-          address: 'zb2rhkeCWu5N5z2qP4JtYeeZ9qrSzfghWq96LcUCLPtJHEcRN',
-          code: 'fake-code'
-        }
-      }]
-      store.dispatch(actions.ipfsUpdate('fake-code'))
-        .then(() =>
-          expect(store.getActions().resolve()).toEqual(expectedAction)
-        )
+  it('should return an ADD_ITEM_COMPLETED action', function () {
+    expect(actions.addItem(fake.item)).toEqual({
+      type: types.ADD_ITEM_COMPLETED,
+      payload: fake.item
     })
   })
 
-  describe('gistGetAddress', function () {
-    it('should parse path correctly', function () {
-      expect(actions.gistAddress('/fake-path')).toEqual('fake-path')
-    })
-
-    it('should return address', function () {
-      const store = mockStore({ code: 'fake-code' })
-      const expectedAction = {
-        type: types.IPFS_GETADDRESS_COMPLETED,
-        payload: {
-          address: 'fake-address'
-        }
-      }
-      store.dispatch(actions.gistGetAddress('/fake-address'))
-        .then(() =>
-          expect(store.getActions()).toEqual(expectedAction)
-        )
+  it('should return an CART_TOTAL_COMPLETED action', function () {
+    expect(actions.removeItem(fake.item)).toEqual({
+      type: types.REMOVE_ITEM_COMPLETED,
+      payload: fake.item
     })
   })
+
 })

@@ -14,8 +14,8 @@ jest.mock('../../utils', () => ({
   createReducer: jest.fn().mockReturnValue('fake-reducer')
 }))
 
-describe('ipfs.reducers', function () {
-  describe('ipfsReducer', function () {
+describe('cart reducers', function () {
+  describe('cartReducer', function () {
     it('should call createReducer with correct args', function () {
       expect(cartReducer).toEqual('fake-reducer')
       expect(createReducer.mock.calls[0][0]).toEqual({})
@@ -66,6 +66,23 @@ describe('ipfs.reducers', function () {
 
       expect(
         createReducer.mock.calls[0][1]['ADD_ITEM_COMPLETED'](
+          { ...fake.props.correct.cart.data },
+          { payload: fake.item }
+        )
+      ).toEqual(expectedCart)
+    })
+
+    it.only('should support REMOVE_ITEM_COMPLETED', function () {
+      const expectedCart = {
+        items: [
+          { id: 1, name: 'Pepsi Cola', price: "2.50", qnty: 2, total: "5.00" }
+        ],
+        qnty: 2,
+        sum: '5.00'
+      }
+
+      expect(
+        createReducer.mock.calls[0][1]['REMOVE_ITEM_COMPLETED'](
           { ...fake.props.correct.cart.data },
           { payload: fake.item }
         )

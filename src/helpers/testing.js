@@ -4,11 +4,11 @@ const fake = {
       cart: {
         data: {
           items: [
-            { id: 0, name: 'Coca Cola', price: "3.00", qnty: 1, total: "3.00" },
-            { id: 1, name: 'Pepsi Cola', price: "2.50", qnty: 2, total: "5.00" }
+            { id: 0, name: 'Coca Cola', price: '3.00', qnty: 1, total: '3.00' },
+            { id: 1, name: 'Pepsi Cola', price: '2.50', qnty: 2, total: '5.00' }
           ],
           qnty: 3,
-          sum: 8.00
+          sum: '8.00'
         }
       },
       products: {
@@ -37,6 +37,7 @@ const fake = {
   item: {
     id: 0,
     name: 'Coca Cola',
+    qnty: 1,
     price: '3.00'
   },
   state: 'fake-state',

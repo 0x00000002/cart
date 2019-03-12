@@ -21,3 +21,4 @@ const Main = ({ items }) => {
 }
 
 export default Main
+export const test = format // for testing `format` function

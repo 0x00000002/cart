@@ -4,7 +4,6 @@ import Buttons, { BackToCatalog } from './Buttons'
 import { CartContext } from './CartContext'
 
 const Cart = ({ cart }) => {
-  console.log(cart)
   const empty = cart && !cart.qnty
 
   return (

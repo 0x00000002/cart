@@ -2,7 +2,7 @@
 
 import * as operations from './operations'
 
-describe('ipfs.operations', function () {
+describe('Cart operations', function () {
   it('should export functions', function () {
     expect(Object.keys(operations)).toEqual([
       'fetchCart',

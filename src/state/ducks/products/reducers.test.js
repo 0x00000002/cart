@@ -13,8 +13,8 @@ jest.mock('../../utils', () => ({
   createReducer: jest.fn().mockReturnValue('fake-reducer')
 }))
 
-describe('ipfs.reducers', function () {
-  describe('ipfsReducer', function () {
+describe('products reducers', function () {
+  describe('productsReducer', function () {
     it('should call createReducer with correct args', function () {
       expect(productsReducer).toEqual('fake-reducer')
       expect(createReducer.mock.calls[0][0]).toEqual({})
@@ -23,7 +23,7 @@ describe('ipfs.reducers', function () {
       ])
     })
 
-    it('should support IPFS_FETCH_COMPLETED', function () {
+    it('should support PRODUCTS_FETCH_COMPLETED', function () {
       expect(
         createReducer.mock.calls[0][1]['PRODUCTS_FETCH_COMPLETED']({}, {
           payload: 'fake-payload'

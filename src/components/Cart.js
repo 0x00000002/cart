@@ -4,14 +4,14 @@ import Buttons, { BackToCatalog } from './Buttons'
 import { CartContext } from './CartContext'
 
 const Cart = ({ cart }) => {
-  const empty = !cart.qnty
-  const { handlers } = React.useContext(CartContext)
+  console.log(cart)
+  const empty = cart && !cart.qnty
 
   return (
     <div>
-      { !cart && <div>Loading, please wait...</div> }
-      { cart && empty && <EmptyCart handler={handlers.showCart} /> }
-      { !empty &&
+      { !cart && <h2>Loading, please wait...</h2> }
+      { cart && empty && <EmptyCart /> }
+      { cart && !empty &&
         <div>
           <h2>Cart</h2>
           <List />
@@ -29,7 +29,7 @@ export const CartItems = ({ items }) => (
   </div>
 )
 
-const List = () => {
+export const List = () => {
   const { cartData: { items }, handlers } = React.useContext(CartContext)
 
   return (
@@ -65,7 +65,7 @@ const Total = () => {
   )
 }
 
-const EmptyCart = (handler) => (
+export const EmptyCart = () => (
   <div>
     <h2>Cart is empty</h2>
     <p>Add some products to your cart! </p>

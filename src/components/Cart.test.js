@@ -1,5 +1,5 @@
 import React from 'react'
-import Cart, { EmptyCart } from './Cart'
+import Cart, { EmptyCart, List } from './Cart'
 import { shallow } from 'enzyme'
 import fake from './../helpers/testing'
 
@@ -29,18 +29,17 @@ const cart = {
 describe('components/Cart', function () {
   it('should display Loading... on empty state', async function () {
     const wrapper = shallow(<Cart {...noCart} />)
-    console.log(wrapper.debug())
     expect(wrapper.find('h2').text()).toEqual('Loading, please wait...')
   })
 
-  it('should load <EmptyCart /> on empty cart', async function () {
+  it('should load EmptyCart on empty cart', async function () {
     const wrapper = shallow(<Cart {...emptyCart} />)
     expect(wrapper.find(EmptyCart).exists()).toEqual(true)
   })
 
   it('viewCart should load Cart component', async function () {
     const wrapper = shallow(<Cart {...cart} />)
-    console.log(wrapper.debug())
     expect(wrapper.find('h2').text()).toEqual('Cart')
+    expect(wrapper.find(List).exists()).toEqual(true)
   })
 })

@@ -32,7 +32,7 @@ export default class App extends Component {
 
     return (
       <CartContext.Provider value={{ cartData, handlers }} >
-        <Header data={{ items: cartData.qnty }} />
+        <Header data={{ items: cartData.qnty, handlers }} />
         <main>
           { !productList.length && <h2>Loading, please wait...</h2> }
           { productList.length && !this.state.viewCart && <Main items={productData.items} /> }

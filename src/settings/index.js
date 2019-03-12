@@ -3,6 +3,7 @@ const _settings = {
 }
 
 let settings
+
 if (process.env.NODE_ENV === 'production') {
   // The app is a production packaged build
   if (process.env.REACT_APP_TARGET === 'staging') {
@@ -21,5 +22,7 @@ if (process.env.NODE_ENV === 'production') {
     siteName: `${_settings.siteName} (development)`
   }
 }
+
+settings = settings || _settings
 
 export default settings

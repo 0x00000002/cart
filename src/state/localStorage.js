@@ -26,17 +26,9 @@ export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('cartState', serializedState)
-    // console.log('State saved: ', JSON.parse(serializedState))
   } catch (e) {
     // ignore
   }
 }
 
-export const clearState = state => {
-  try {
-    localStorage.setItem('cartState', undefined)
-    console.log('State cleared.')
-  } catch (e) {
-    // ignore
-  }
-}
+export const clearState = state => localStorage.clear()

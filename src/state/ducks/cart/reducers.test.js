@@ -72,7 +72,7 @@ describe('cart reducers', function () {
       ).toEqual(expectedCart)
     })
 
-    it.only('should support REMOVE_ITEM_COMPLETED', function () {
+    it('should support REMOVE_ITEM_COMPLETED', function () {
       const expectedCart = {
         items: [
           { id: 1, name: 'Pepsi Cola', price: "2.50", qnty: 2, total: "5.00" }

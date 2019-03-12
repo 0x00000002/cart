@@ -15,17 +15,19 @@ export default class App extends Component {
     await this.props.fetchCart(userId)
   }
 
+  viewCart = () => this.setState({ viewCart: !this.state.viewCart })
+
   render () {
     const { cart: { data: cartData }, products: { data: productData } } = this.props
     const productList = cartData && productData.items
-    const viewCart = () => this.setState({ viewCart: !this.state.viewCart })
+
     const handlers = {
       cartTotal: this.props.cartTotal,
       clearCart: this.props.clearCart,
       fetchCart: this.props.fetchCart,
       addItem: this.props.addItem,
       removeItem: this.props.removeItem,
-      showCart: viewCart
+      showCart: this.viewCart
     }
 
     return (

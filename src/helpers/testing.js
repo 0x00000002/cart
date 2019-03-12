@@ -18,7 +18,14 @@ const fake = {
             { id: 1, name: 'Pepsi Cola', price: 2.50 }
           ]
         }
-      }
+      },
+      cartTotal: jest.fn(),
+      clearCart: jest.fn(),
+      fetchCart: jest.fn(),
+      addItem: jest.fn(),
+      removeItem: jest.fn(),
+      showCart: jest.fn(),
+      fetchList: jest.fn()
     },
     wrong: {
       cart: {},

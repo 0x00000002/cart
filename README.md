@@ -1,8 +1,6 @@
 
 # Shopping cart (Redux version)
 
-> version: VR-FrontendTest-v1.1
-
 Shopping cart with React and Redux.
 
 ### Installation 
